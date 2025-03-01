@@ -34,3 +34,8 @@
             </div>
         </div>
         @endforeach
+        <div class="d-flex justify-content-center mt-5">
+            <nav aria-label="Page navigation">
+                {{ $productos->links() }}
+            </nav>
+        </div>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estilos.css">   
+    <title>login</title>
+    <meta charset="utf-8">
+    
+</head>
+
+<body>
+   
+<header>
+	
+	    <a href="javascript:void(0);" class="icono" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+	<a href="index.html"><img class="logo" src="images/Logoc.png"  ></a>
+        <nav id="mibarra" class=" ">
+        
+			
+       <a href="Constructivismo.html">Constructivismo</a>
+		<a href="Artistas.html">Artistas</a>
+		<a href="Obras.html">Obras</a>
+		<a href="Eventos.html">Eventos</a>
+		<a href="Espacios.html">Espacios</a>
+		<a href="contacto.html">Contacto</a> 
+		<a class="sesionnav" href="login.html">Iniciar Sesion</a> 
+			
+        </nav>
+	
+</header>
+	
+
+<section>
+    <br>
+  <h5 style="text-align: center;font-size: 50px">Login</h5>
+	<form style="text-align: center" action="login.php" method="post">
+    	
+	<p class="formular"><strong>Nombre de Usuario:</strong><input class="contact" name="usuario" type="text" maxlength="12" placeholder="Nombre de Usuario"></p>
+	<p class="formular"><strong>Contraseña:</strong><input class="contact" type="password" name="password" maxlength="12" placeholder="Contraseña"></p>
+        	<input style="height: 70px;text-align:center" type="submit" value="Login"/>	
+    </form>
+	<br>
+	
+    <a style="color: black;margin-left: 44%;font-size: 20px;" href="form_registro.html">Registrate si no sos usuario.</a> 
+    
+
+
+    
+</section>
+
+<footer style="margin-top: 25.75%">
+  
+	
+	 
+	
+	<div class="redes">
+	
+	<div class="instagram">
+  <a href="https://www.instagram.com/">
+		<img src="images/logoinstagram1.png">
+		</a>
+		</div>
+		
+	<div class="facebook">
+  <a href="https://www.facebook.com/">
+		<img src="images/logofacebook.png">
+		</a>
+		</div>
+	
+	<div class="twiter">
+  <a href="https://twitter.com/">
+		<img src="images/twiter.png">
+		</a>
+		</div>
+		
+		</div>
+	
+	
+	
+		
+
+	
+	
+</footer>
+
+	<script>
+
+   function myFunction() {
+
+     var x = document.getElementById("mibarra");
+
+     if (x.className === " ") {
+
+       x.className += "responsive";
+
+     } else {
+
+       x.className = " ";
+
+     }
+
+   }
+
+</script>
+</body>
+</html>

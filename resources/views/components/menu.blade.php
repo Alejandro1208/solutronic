@@ -1,28 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="/"><img src="{{ asset('img/Solutronic-logo-scaled-1.webp') }}" alt="Logo"></a>
+<nav class="navbar navbar-expand-lg navbar-light" style="position: relative;/* left: 49px; */width: 100%;z-index: 10;background-color: rgb(255 255 255 / 100%);">
+            <div class="container">
+                <a class="navbar-brand" href="/"><img src="img/logosf3.png" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/quienes-somos') }}">Quienes Somos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/productos') }}">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="{{ url('/redComercializacion')}}">Red de Comercialización</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('contacto') }}" class="nav-link text-dark">Contacto</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<script>
+                <div class="collapse navbar-collapse" id="navbarNav" style="
+    text-align: center;
+    justify-content: center;
+">
+                    <ul class="navbar-nav ms-auto" style="
+    /* color: white; */
+    text-align: center;
+    justify-content: center;
+">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #000000;" href="https://www.solutronic.com.ar/quienes-somos">Quienes Somos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #000000;" href="https://www.solutronic.com.ar/productos">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #000000;/* font-size: 20px; */" href="https://www.solutronic.com.ar/redComercializacion">Red de Comercialización</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #000000;" href="https://www.solutronic.com.ar/contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <script>
 
 </script>
 
@@ -44,4 +51,5 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efecto de sobresalir */
         border-radius: 8px; /* Bordes más redondeados al hacer hover */
     }
+   
 </style>

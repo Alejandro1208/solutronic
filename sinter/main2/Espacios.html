@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="estilos.css">   
+    <title>ESPacios</title>
+    <meta charset="utf-8">
+    
+</head>
+
+<body>
+   
+<header>
+	    
+	    <a href="javascript:void(0);" class="icono" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+	<a href="index.html"><img class="logo" src="images/Logoc.png"  ></a>
+        <nav id="mibarra" class=" ">
+			
+        <a href="Constructivismo.html">Constructivismo</a>
+		<a href="Artistas.html">Artistas</a>
+		<a href="Obras.html">Obras</a>
+		<a href="Eventos.html">Eventos</a>
+		<a href="Espacios.html" class="selec">Espacios</a>
+		<a href="contacto.html">Contacto</a>  
+		<a class="sesionnav" href="login.html">Iniciar Sesion</a> 
+			
+        </nav>
+	
+</header>
+	
+
+<section>
+   
+	<h2></h2>
+  <div class="museo">
+    <a href="https://www.coleccionmuseoruso.es/" > 
+    <img src="images/museo0.png">
+      </a>
+  </div>
+  <div class="cajacontenedora2">
+		
+    <div class="sofa0">
+      <a href="index.html" > 
+      <img src="images/museo.png">
+        </a>
+    </div>
+    
+    <div class="sofa1">
+     <a href="index.html">
+     <img src="images/museo1.png" >
+    </a>
+    </div>
+    <div class="sofa1">
+      <a href="index.html">
+      <img src="images/Museo3.png" >
+     </a>
+     </div>
+     <div class="sofa1">
+      <a href="index.html">
+      <img src="images/museo4.jpg" >
+     </a>
+     </div>
+</div>
+</section>
+
+<iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12795.890402389583!2d-4.4386217!3d36.6991963!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x950522d2f6db0fc9!2sColecci%C3%B3n%20del%20Museo%20Ruso%20%2F%20M%C3%A1laga!5e0!3m2!1ses!2sar!4v1666031161749!5m2!1ses!2sar" width="600" height="450" style="border:0;" 
+allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<footer>
+  
+	
+	
+
+	<div class="redes">
+	
+	<div class="instagram">
+  <a href="https://www.instagram.com/">
+		<img src="images/logoinstagram1.png">
+		</a>
+		</div>
+		
+	<div class="facebook">
+  <a href="https://www.facebook.com/">
+		<img src="images/logofacebook.png">
+		</a>
+		</div>
+	
+	<div class="twiter">
+  <a href="https://twitter.com/">
+		<img src="images/twiter.png">
+		</a>
+		</div>
+		
+		</div>
+	
+		
+	
+</footer>
+	
+	<script>
+
+   function myFunction() {
+
+     var x = document.getElementById("mibarra");
+
+     if (x.className === " ") {
+
+       x.className += "responsive";
+
+     } else {
+
+       x.className = " ";
+
+     }
+
+   }
+
+</script>
+
+	<script>
+
+var slideIndex = 1;
+
+showDivs(slideIndex);
+
+function plusDivs(n) {
+
+   showDivs(slideIndex += n);
+
+}
+
+
+
+function showDivs(n) {
+
+   var i;
+
+   // acá define qué elemento entra en el slider
+
+   var x = document.getElementsByClassName("mySlides");
+
+   if (n > x.length) {slideIndex = 1}
+
+   if (n < 1) {slideIndex = x.length} ;
+
+   for (i = 0; i < x.length; i++) {
+
+       x[i].style.display = "none";
+
+   }
+
+   x[slideIndex-1].style.display = "block";
+
+}
+
+carousel();
+
+function carousel() {
+
+   var i;
+
+   var x = document.getElementsByClassName("mySlides");
+
+   for (i = 0; i < x.length; i++) {
+
+     x[i].style.display = "none";
+
+   }
+
+   slideIndex++;
+
+   if (slideIndex > x.length) {slideIndex = 1}
+
+   x[slideIndex-1].style.display = "block";
+
+   setTimeout(carousel, 2000); // Cambia la imagen cada 2 segundos
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+* {margin: 0; padding: 0;}
+    
+body { color: black;    font-family:Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif"}
+header { background-color: black; color: white;position:relative; opacity: 90%}
+nav {background-color: black;padding: 1%;text-align: center}
+nav a { color: white; text-decoration: none;text-transform: uppercase;padding: 10px; font-size: 16px;display: inline-block;justify-content: center;}
+nav a:hover { color:black ;background-color:white;padding: 10px;border-radius: 10px}
+nav a.selec { color:black ;background-color:lightblue;padding: 10px;border-radius: 10px}
+h2 {padding: 100px;background-color:transparent; color: black}
+h3{padding: 50px; text-align: center;font-size: 20px}
+
+img{max-width: 100%}
+
+.logo {width:3%;margin: 5px 20px 10px 10px ; float: left;border-radius: 15%}
+.imgprincipal img {width: 100%;height: 800px}
+.cajacontenedora {display:flex; flex-flow: wrap}
+.cajacontenedora div { width: 22%;margin:auto; padding: 20px;text-align: center}
+.cajacontenedora img {border: 3px solid black;border-radius: 10%}
+/*.sofa30 img{position: absolute; width: 633.98px ;height: 358.33px;margin:-16.5%;margin-top: -9.5%;transition: opacity 1.5s ease-in-out;}
+.sofa30 img.top:hover {opacity: 0;}*/
+.cajacontenedora2 {  background-color:#3D2600;display:flex; flex-flow: wrap;border-radius: 3%}
+.cajacontenedora2 div { width: 33%;margin:auto; padding: 20px;text-align: center}
+.cajacontenedora2 img {border: 3px solid black;border-radius: 1%}
+.redes { display:flex; flex-flow: wrap;justify-content: center}
+.redes div {width: 3%; padding: 10px}
+.cajacontenedora div:hover {opacity: 70%}
+.formulario {padding: 20px}
+.respuesta1{background-color: orange;color: white;font-size: 30px ;text-align: center;padding: 6%}
+.cajagaleria {display:flex; flex-flow: wrap}
+.cajagaleria div { width: 15%; margin:auto; padding: 20px;text-align: center}
+.cajagaleria img{border: 3px solid black}
+.cajagaleria img:hover{opacity: 70%}
+
+
+.cajacontenedora4 div { width: 31.3%; margin:auto; padding: 20px; box-sizing: border-box;border: 4px solid #000000;text-align: center}
+
+footer { background-color: #000000 ;ext-align: center; color: black;opacity: 95% }
+.icono { display:none;color: white}
+
+p {margin: 30px 0}
+form { max-width: 80%;margin: auto;border:1px solid lightblue;font-size: 16px }
+form input{width: 60%;padding: 4px;border-radius: 4px}
+form textarea{width: 500px;height: 150px}
+form strong {width: 160px; float: left;display: block}
+form input[type=submit]{width: 200px;padding: 20px;text-align: center;background-color: orange;color: white;font-size: 20px}
+
+
+
+
+/*@media (max-width:1600px) {
+	.logo {width:10%;float:right;margin: 29px 50px 0 0}
+	.imgprincipal img {width: 100%;height:870px}
+}*/
+	
+@media (max-width:1366px) {
+
+	.imgprincipal img {width: 100%;height:600px}
+
+}
+	
+@media (max-width:1279px) {
+	
+    .imgprincipal img {width: 100%;height:600px}
+}
+
+@media (max-width:1150px) {
+
+	
+	.imgprincipal img {width: 100%;height:650px}
+}
+
+@media (max-width:950px) {
+
+
+	.imgprincipal img {width: 100%;height:550px}
+	
+}
+
+
+@media (max-width:900px) {
+	 nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+    .responsive {display: block}
+    .icono {display: block; font-size: 38px}
+	.logo {width:17%;margin: 0 40% 0 0 }
+	.imgprincipal img {width: 100%;height:inherit}
+    .cajacontenedora4 div, .cajacontenedora div { width: 48%; }
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+	form textarea{width: 100%}
+	form strong {display:none}
+	
+}
+@media (max-width:727px) {
+	
+	.anuncioweb{display:none;color: white}
+    .anunciomobile { display:block;color: white}
+	.publicidad iframe{width:300px ;height: 160px; background-color:white}
+}
+
+@media (max-width:700px) {
+	 nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+    .responsive {display: block}
+    .icono {display: block; font-size: 38px}
+	.logo {width:20%;margin: 0 40% 0 0 }
+	.imgprincipal img {width: 100%;height:inherit}
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+	form textarea{width: 100%}
+	form strong {display:none}
+}
+
+@media (max-width:600px) {
+	nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+    .responsive {display: block}
+    .icono {display: block; font-size: 38px}
+	.logo {width:25%;margin: 0 35% 0 0 }
+	.imgprincipal img {width: 100%;height:inherit}
+	.respuesta1{padding: 13%}
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+    form textarea{width: 100%}
+	form strong {display:none}
+	
+}
+
+@media (max-width:480px) {
+	.imgprincipal img {width: 100%;height: inherit}
+    nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+	h2 {padding: 50px}
+    .responsive {display: block}
+    .icono {display: block; font-size: 35px}
+	.logo {width:35%;margin: 0 30% 0 0 }
+	.redes div{width: 15%; padding: 10px}
+    .cajacontenedora4 div, .cajacontenedora div { width: 98%; }
+	.respuesta1{padding: 13%}
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+	form textarea{width: 100% }
+	form strong {display:none}
+}
+	
+
+    
+	
+	
+
+

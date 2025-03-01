@@ -61,8 +61,8 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
+                                    <form id="logout-form" action="/admin/productos" method="POST" class="d-none">
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
                                     </form>
                                 </div>
                             </li>

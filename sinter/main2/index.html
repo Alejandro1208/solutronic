@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estilos.css">   
+    <title>Vanguardia</title>
+    <meta charset="utf-8">
+    
+
+</head>
+
+<body>
+	
+	  	
+<header>
+	
+	  
+	    <a href="javascript:void(0);" class="icono" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+	
+	<a href="index.html"><img class="logo" src="images/Logoc.png"  ></a>
+		 
+        <nav id="mibarra" class=" ">
+	
+        <a href="Constructivismo.html">Constructivismo</a>
+		<a href="Artistas.html">Artistas</a>
+		<a href="Obras.html">Obras</a>
+		<a href="Eventos.html">Eventos</a>
+		<a href="Espacios.html">Espacios</a>
+		<a href="contacto.html">Contacto</a> 
+		<a class="sesionnav" href="login.html">Iniciar Sesion</a> 
+			
+        </nav>
+	
+</header>
+	
+
+<section>
+    
+	<div class="imgprincipal">
+	<img src="images/Imagen1.jpg" class="mySlides">
+	<img src="images/imagen2.jpg" class="mySlides">
+	<img src="images/Imagen3.jpg" class="mySlides">
+	</div>
+		
+    <div class="cajacontenedora">
+		
+        <div class="sofa0">
+			<a href="artistas1.html" > 
+            <img src="images/imgen411.png">
+				</a>
+		</div>
+        
+      <div class="sofa1">
+		 <a href="artistas1.html">
+		 <img src="images/imagen51.png" >
+		</a>
+		</div>
+		
+		
+     <div class="sofa2">
+		<a href="artistas1.html">
+		<img src="images/imagen611.png">
+		</a>		
+		</div>     
+		
+	<div class="sofa3">
+		<a href="artistas1.html">
+		<img src="images/imagen71.png">
+		</a>
+		</div>     
+		
+	     		
+   </div>
+	
+    <div class="cajacontenedora2" style="background-color:#3D2600">
+		
+        <div class="sofa0">
+			<a href="index.html" > 
+            <img src="images/imagen8.jpg">
+				</a>
+		</div>
+        
+      <div class="sofa1">
+		 <a href="index.html">
+		 <img src="images/imagen9.jpg" >
+		</a>
+		</div>
+		
+		
+     <div class="sofa2">
+		<a href="index.html">
+		<img src="images/imagen11.jpg" >
+		</a>		
+		</div>     
+		
+	<div class="sofa3">
+		<a href="index.html">
+	<img src="images/Imagen10.jpg"/>
+		</a>
+	
+	</div>  
+		
+	
+	     
+		
+	     		
+   </div>
+    
+</section>
+
+<footer>
+  
+	
+	
+	<div class="redes">
+	
+	<div class="instagram">
+  <a href="https://www.instagram.com/">
+		<img src="images/logoinstagram1.png">
+		</a>
+		</div>
+		
+	<div class="facebook">
+  <a href="https://www.facebook.com/">
+		<img src="images/logofacebook.png">
+		</a>
+		</div>
+	
+	<div class="twiter">
+  <a href="https://twitter.com/">
+		<img src="images/twiter.png">
+		</a>
+		</div>
+		
+		</div>
+	
+	
+</footer>
+
+	<script>
+
+   function myFunction() {
+
+     var x = document.getElementById("mibarra");
+
+     if (x.className === " ") {
+
+       x.className += "responsive";
+
+     } else {
+
+       x.className = " ";
+
+     }
+
+   }
+
+</script>
+	
+	<script>
+
+var slideIndex = 1;
+
+showDivs(slideIndex);
+
+function plusDivs(n) {
+
+   showDivs(slideIndex += n);
+
+}
+
+
+
+function showDivs(n) {
+
+   var i;
+
+   // acá define qué elemento entra en el slider
+
+   var x = document.getElementsByClassName("mySlides");
+
+   if (n > x.length) {slideIndex = 1}
+
+   if (n < 1) {slideIndex = x.length} ;
+
+   for (i = 0; i < x.length; i++) {
+
+       x[i].style.display = "none";
+
+   }
+
+   x[slideIndex-1].style.display = "block";
+
+}
+
+carousel();
+
+function carousel() {
+
+   var i;
+
+   var x = document.getElementsByClassName("mySlides");
+
+   for (i = 0; i < x.length; i++) {
+
+     x[i].style.display = "none";
+
+   }
+
+   slideIndex++;
+
+   if (slideIndex > x.length) {slideIndex = 1}
+
+   x[slideIndex-1].style.display = "block";
+
+   setTimeout(carousel, 4000); // Cambia la imagen cada 2 segundos
+
+}
+
+</script>
+	
+</body>
+</html>

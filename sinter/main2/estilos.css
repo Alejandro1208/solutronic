@@ -1,0 +1,177 @@
+* {margin: 0; padding: 0;}
+    
+body { color: black;    font-family:Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif"}
+header { background-color: black; color: white;position:relative; opacity: 90%}
+nav {background-color: black;padding: 1%;text-align: center}
+nav a { color: white; text-decoration: none;text-transform: uppercase;padding: 10px; font-size: 16px;display: inline-block;justify-content: center;}
+nav a:hover { color:black ;background-color:white;padding: 10px;border-radius: 10px}
+nav a.selec { color:black ;background-color:lightblue;padding: 10px;border-radius: 10px}
+.nava{ opacity: 95%}
+.nava a{margin-right: 30px;}
+h2 {display:flex; flex-flow: wrap;width: 70%;text-align: left}
+h3{padding: 50px; text-align: center;font-size: 20px}
+h4{padding: 100px;background-color: transparent;color: black}
+a{text-decoration: none;color: white}
+a:hover{text-decoration:underline}
+
+img{max-width: 100%}
+
+.logo {width:3%;margin: 5px 20px 10px 10px ; float: left;border-radius: 15%}
+.imgprincipal img {width: 100%;height: 800px}
+.imgprincipal1 img {width: 100%;height: 600px}
+.cajacontenedora {display:flex; flex-flow: wrap}
+.cajacontenedora div { width: 22%;margin:auto; padding: 20px;text-align: center}
+.cajacontenedora img {border: 3px solid black;border-radius: 10%; box-shadow: 5px 8px 22px black}
+.cajacontenedora2 {  display:flex; flex-flow: wrap}
+.cajacontenedora2 div { width: 33%;margin:auto; padding: 20px;text-align: center}
+.cajacontenedora2 img {border: 3px solid black;border-radius: 1%}
+.redes { display:flex; flex-flow: wrap;justify-content: center}
+.redes div {width: 3%; padding: 10px}
+.redes img {border-radius: 15%}
+.cajacontenedora div:hover {opacity: 70%}
+.cajacontenedora2 div:hover {opacity: 85%}
+.formulario {padding: 20px}
+.respuesta1{background-color: orange;color: white;font-size: 30px ;text-align: center;padding: 6%}
+.cajagaleria {display:flex; flex-flow: wrap}
+.cajagaleria div { width: 15%; margin:auto; padding: 20px;text-align: center;border-radius: 20%}
+.cajagaleria img{border: 3px solid black;border-radius: 3% ; box-shadow: 5px 8px 12px black}
+.cajagaleria img:hover{opacity: 70%}
+.cajaart {display:flex; flex-flow: wrap}
+.cajaart div {background-color:#cdcdcd; width: 20%;margin:auto;margin-bottom: 20px;margin-right: 20px; padding: 20px;border-radius: 3% ;text-align: center; box-shadow: 5px 8px 12px black}
+.cajaart img{border-radius: 3%}
+.cajaart a{color: #000000;}
+.cajaart img:hover{opacity: 70%}
+.construc {display:flex; flex-flow: wrap}
+.construc img{width: 30%}
+.const{text-align: center;padding: 20px}
+.const img{width: 69%;box-shadow: 5px 8px 12px black}
+.k2 {text-align: center;margin: auto}
+.construc1 {display:flex; flex-flow: wrap;text-align: center;}
+.construc1 img{width: 40%;height:500px ;padding: 0%;margin: auto;border-radius: 1% ; box-shadow: 5px 8px 12px black}
+.museo img {width: 100%;height: 700px;}
+.mapa { width: 90%;min-height: 400px;display: block; margin: auto}
+.sesionnav{position: relative;float: right;background-color:white;border-radius: 10px;color: black}
+.sesionnav:hover{opacity: 100%;}
+
+
+.cajacontenedora4 div { width: 31.3%; margin:auto; padding: 20px; box-sizing: border-box;border: 4px solid #000000;text-align: center}
+
+footer { background-color: #000000 ;text-align: center; color: black;opacity: 95% }
+.icono { display:none;color: white}
+
+p {margin: 30px 0}
+.formulario { max-width: 80%;margin: auto;border:1px solid black;font-size: 16px }
+.contact{width: 60%;padding: 4px;border-radius: 4px}
+form textarea{width: 500px;height: 150px}
+form strong {width: 160px; float: left;display: block}
+form input[type=submit]{width: 200px;padding: 20px;text-align: center;background-color: orange;color: white;font-size: 20px}
+
+.formuobra{ max-width: 80%;margin: auto;margin-left: 150px; font-size: 16px;text-align: center ;padding: 10px}
+form input{width: 30%;height: 35px; padding: 4px}
+form input:hover{border-color:lightcyan }
+form button{width: 100px;height: 35px}
+form button:hover {box-shadow: 2px 2px 12px white }
+
+
+
+
+
+/*@media (max-width:1600px) {
+	.logo {width:10%;float:right;margin: 29px 50px 0 0}
+	.imgprincipal img {width: 100%;height:870px}
+}*/
+	
+@media (max-width:1366px) {
+
+	.imgprincipal img {width: 100%;height:600px}
+
+}
+	
+@media (max-width:1279px) {
+	
+    .imgprincipal img {width: 100%;height:600px}
+}
+
+@media (max-width:1150px) {
+
+	
+	.imgprincipal img {width: 100%;height:650px}
+}
+
+@media (max-width:950px) {
+
+
+	.imgprincipal img {width: 100%;height:550px}
+	
+}
+
+
+@media (max-width:900px) {
+	 nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+    .responsive {display: block}
+    .icono {display: block; font-size: 38px}
+	.logo {display: none; }
+	.imgprincipal img {width: 100%;height:inherit}
+    .cajacontenedora4 div, .cajacontenedora div { width: 48%; }
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+	form textarea{width: 100%}
+	form strong {display:none}
+	
+}
+@media (max-width:727px) {
+	
+	.anuncioweb{display:none;color: white}
+    .anunciomobile { display:block;color: white}
+	.logo {display: none; }
+	.publicidad iframe{width:300px ;height: 160px; background-color:white}
+}
+
+@media (max-width:700px) {
+	 nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+    .responsive {display: block}
+    .icono {display: block; font-size: 38px}
+	.logo {display: none; }
+	.imgprincipal img {width: 100%;height:inherit}
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+	form textarea{width: 100%}
+	form strong {display:none}
+}
+
+@media (max-width:600px) {
+	nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+    .responsive {display: block}
+    .icono {display: block; font-size: 38px}
+	.logo {display: none; }
+	.imgprincipal img {width: 100%;height:inherit}
+	.respuesta1{padding: 13%}
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+    form textarea{width: 100%}
+	form strong {display:none}
+	
+}
+
+@media (max-width:480px) {
+	.imgprincipal img {width: 100%;height: inherit}
+    nav {display:none;margin: 0;padding: 5%}
+    nav a {display: block;}
+	h2 {padding: 50px}
+    .responsive {display: block}
+    .icono {display: block; font-size: 35px}
+	.logo {display: none; }
+	.redes div{width: 15%; padding: 10px}
+    .cajacontenedora4 div, .cajacontenedora div { width: 98%; }
+	.respuesta1{padding: 13%}
+	.cajagaleria div { width: 30%; margin:auto; padding: 20px;text-align: center}
+	form textarea{width: 100% }
+	form strong {display:none}
+}
+	
+
+    
+	
+	
+
+

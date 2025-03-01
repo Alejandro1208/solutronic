@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estilos.css">   
+    <title>login</title>
+    <meta charset="utf-8">
+    
+</head>
+
+<body>
+   
+<header>
+	
+	    <a href="javascript:void(0);" class="icono" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+	<a href="index.html"><img class="logo" src="images/Logoc.png"  ></a>
+        <nav id="mibarra" class=" ">
+        
+			
+       <a href="Constructivismo.html">Constructivismo</a>
+		<a href="Artistas.html">Artistas</a>
+		<a href="Obras.html">Obras</a>
+		<a href="Eventos.html">Eventos</a>
+		<a href="Espacios.html">Espacios</a>
+		<a href="contacto.html">Contacto</a> 
+		<a class="sesionnav" href="login.html">Iniciar Sesion</a> 
+			
+        </nav>
+	
+</header>
+	
+<br>
+<br>
+<section style="text-align: center;">
+
+     <form action="registro.php" method="post"  class="formulario">
+        <h2 style="text-align: center;">Registrate en el sitio</h2>
+   
+
+    <p class="formular"><strong>Nombre:</strong><input class="contact" type="text" name="nombre" required placeholder="Nombre"></p>
+    <p class="formular"><strong>Apellido:</strong><input class="contact" type="text" name="apellido" required placeholder="Apellido"></p>
+    <p class="formular"><strong>Email:</strong><input class="contact" type="email" name="mail" required placeholder="Email"></p>
+    <p class="formular"><strong>Usuario:</strong><input class="contact" type="text" name="usuario" required placeholder="Usuario"></p>
+    <p class="formular"><strong>Contraseña:</strong><input class="contact" type="password" name="password" maxlength="12" required placeholder="Contraseña"></p>
+    <p class="formular"> <input style="text-align:center;padding: 25px;" type="submit" name="Registrarse" value="Registrarse"></p>
+    <p ><input type="checkbox" name="newsletter" value="si" checked="checked">Sí, deseo recibir informacion por mail.</p>
+    
+    </form>
+</section>
+</body>
+</html>

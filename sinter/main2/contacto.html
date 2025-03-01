@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="estilos.css">   
+    <title>CONTACTOS</title>
+    <meta charset="utf-8">
+    
+</head>
+
+<body>
+   
+<header>
+	
+	    <a href="javascript:void(0);" class="icono" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+	<a href="index.html"><img class="logo" src="images/Logoc.png"  ></a>
+        <nav id="mibarra" class=" ">
+        
+			
+       <a href="Constructivismo.html">Constructivismo</a>
+		<a href="Artistas.html">Artistas</a>
+		<a href="Obras.html">Obras</a>
+		<a href="Eventos.html">Eventos</a>
+		<a href="Espacios.html">Espacios</a>
+		<a href="contacto.html" class="selec">Contacto</a> 
+		<a class="sesionnav" href="login.html">Iniciar Sesion</a> 	
+        </nav>
+	
+</header>
+	
+
+<section>
+    
+   	<br>
+		
+		
+	<form method="post" action="respuesta.html" class="formulario">
+		
+	<h3>FORMULARIO DE CONTACTO</h3>
+
+		<p class="formular"><strong>Nombre:</strong><input class="contact" type="text" name="nombre" required placeholder="Nombre"></p>
+		<p class="formular"><strong>Apellido:</strong><input class="contact" type="text" name="apellido" required placeholder="Apellido"></p>
+		<p class="formular"><strong>Telefono:</strong><input class="contact" type="tel" name="telefono" required placeholder="telefono"></p>
+		<p class="formular"><strong>Email:</strong><input class="contact" type="email" name="mail" required placeholder="Email"></p>
+		<p class="formular"><strong>dejanos tu mensaje</strong><textarea name="mensaje"></textarea></p>
+		<p class="formular"> <input style="text-align:center;padding: 25px;" type="submit" name="envio" value="Enviar Formulario"></p>
+	
+	</form>
+		
+	<h4></h4>
+	   		
+   
+    
+</section>
+
+<footer>
+  
+	
+	 
+	
+	<div class="redes">
+	
+	<div class="instagram">
+  <a href="https://www.instagram.com/">
+		<img src="images/logoinstagram1.png">
+		</a>
+		</div>
+		
+	<div class="facebook">
+  <a href="https://www.facebook.com/">
+		<img src="images/logofacebook.png">
+		</a>
+		</div>
+	
+	<div class="twiter">
+  <a href="https://twitter.com/">
+		<img src="images/twiter.png">
+		</a>
+		</div>
+		
+		</div>
+	
+	
+	
+		
+
+	
+	
+</footer>
+
+	<script>
+
+   function myFunction() {
+
+     var x = document.getElementById("mibarra");
+
+     if (x.className === " ") {
+
+       x.className += "responsive";
+
+     } else {
+
+       x.className = " ";
+
+     }
+
+   }
+
+</script>
+</body>
+</html>

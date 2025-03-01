@@ -3,20 +3,123 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Solutronic</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- En la sección head -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <!-- En la sección head -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="app">
-        @include('components.menu')
+        <nav class="navbar navbar-expand-lg navbar-light" style="position: absolute; top: 10px; width: 100%; z-index: 10; background-color: rgba(255, 255, 255, 0%);">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">
+                    <img src="img/logosf3.png" alt="Logo">
+                </a>
+
+                <!-- Botón para colapsar el menú en mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #ffffff73;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menú colapsable -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Opciones izquierda -->
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #FFFFFF;" href="https://www.solutronic.com.ar/quienes-somos">Nuestros Diseños</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #FFFFFF;" href="https://www.solutronic.com.ar/quienes-somos">¿Quiénes Somos?</a>
+                        </li>
+                    </ul>
+
+                    <!-- Opciones derecha -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #FFFFFF;" href="https://www.solutronic.com.ar/productos">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #FFFFFF;" href="https://www.solutronic.com.ar/redComercializacion">Red de Comercialización</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #FFFFFF;" href="https://www.solutronic.com.ar/contacto">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <style>
+        .navbar-brand img {
+            width: 150px;
+        }
+
+        .nav-link {
+            margin-right: 10px;
+            transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            color: #ffffff !important;
+            background-color: #FF00FF !important;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        /* Estado del menú colapsado */
+        .navbar-collapse.show {
+            background-color: rgba(0, 0, 0, 90%);
+            opacity: 1;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 100%;
+            z-index: 10;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #FFFFFF !important;
+        }
+
+        /* Asegurar que las opciones aparezcan una debajo de la otra en mobile */
+        .navbar-nav {
+            flex-direction: column;
+        }
+
+        /* Opciones en horizontal en escritorio */
+        @media (min-width: 992px) {
+            .navbar-nav {
+                flex-direction: row;
+            }
+        }
+
+        .navbar-nav .nav-item {
+            margin-bottom: 10px;
+        }
+
+        /* Remover espacio extra en pantallas grandes */
+        @media (min-width: 992px) {
+            .navbar-nav .nav-item {
+                margin-bottom: 0;
+            }
+        }
+    </style>
+
+        
         @include('components.banner')
         @include('components.quienes-somos')
 
         <!-------------- Productos Destacados  ----------------->
-        <div class="row pt-5" style="background-color: #eceff3">
+        <div class="row pt-5" style="background-color: #eceff3;margin-right: 0">
             <h2 class="text-center">Productos destacados</h2>
             <div class="container my-5">
                 <!-- Carrusel para pantallas de escritorio -->
@@ -159,10 +262,13 @@
 
         @include('components.footer')
     </div>
-
     <!-- Bootstrap JS y dependencias Popper.js y jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Antes de cerrar el body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+    <!-- Antes de cerrar el body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -191,17 +297,18 @@
 
 .card-body {
     position: absolute;
-    bottom: 5px; /* Ajusta este valor según la superposición deseada */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    padding: 20px;
+    bottom: 1px; /* Ajusta este valor según la superposición deseada */
+    width: 100%;
     text-align: center;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.365);
+    opacity:80%;
+    border-radius: 0px 0px 10px 10px;
+    padding: 0px;
 
 }
-
+.card-body:hover {
+    opacity:100%;
+}
 .card-title {
     margin-bottom: 15px;
     font-size: 1.25rem;

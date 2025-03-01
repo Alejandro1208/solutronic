@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Contacto - Solutronic</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- En la sección head -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+    <!-- En la sección head -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet">
     <style>
         /* Banner CSS */
         .hero {
-            background: url('{{ asset('img/banners/auto-electrico-scaled.webp') }}') no-repeat center center;
-            background-size: cover;
-            color: #fff;
-            padding: 100px 0;
+            background: url('{{ asset('img/banners/contacto41.png') }}') no-repeat center center;
+            background-size: auto;
+            color: #000000;
+            padding: 70px 0;
+            opacity: 1;
         }
         .hero h1 {
             font-size: 3rem;
@@ -28,7 +33,7 @@
             color: #007bff;
         }
         .contact-info {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
         }
@@ -45,7 +50,7 @@
             background-color: #f8f9fa;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 11px 13px 10px rgba(0, 0, 0, 0.1);
         }
         .contact-form h2 {
             margin-bottom: 20px;
@@ -61,7 +66,7 @@
             resize: vertical;
         }
         .contact-form .btn-primary {
-            width: 100%;
+            width: 30%;
             border-radius: 5px;
             background-color: #FF00FF;
             border-color: #FF00FF;
@@ -71,7 +76,7 @@
             border-color: #c303c3;
         }
         .contacto{
-            background-color: #ff00ff7d;
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -79,6 +84,9 @@
     @include('components.menu')
     <header class="hero text-center">
         <div class="container">
+            <br>
+            <br>
+            <br>
             <h1>Contacto</h1>
             <p>Aportando soluciones electrónicas confiables y accesibles</p>
         </div>
@@ -121,9 +129,12 @@
     </div>
     @endif
     @include('components.footer')
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS y dependencias Popper.js y jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <!-- Antes de cerrar el body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
+    <!-- Antes de cerrar el body -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 </body>
 </html>

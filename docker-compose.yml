@@ -5,14 +5,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel-app
     ports:
-      - "8080:80"
+      - "8000:8000"
     volumes:
       - .:/var/www/html
+    tty: true
+    stdin_open: true
     depends_on:
       - db
-
+  
   db:
     image: mysql:5.7
     container_name: mysql-db

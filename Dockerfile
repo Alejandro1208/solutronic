@@ -1,20 +1,37 @@
-# Usa una imagen oficial de PHP con Apache
-FROM php:7.4-apache
+FROM php:8.2-cli
 
-# Configura las extensiones necesarias para Laravel
-RUN docker-php-ext-install pdo pdo_mysql
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    libzip-dev
 
-# Instala Composer
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
+
+# Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Configura el directorio de trabajo
 WORKDIR /var/www/html
 
-# Copia el contenido del proyecto al contenedor
+# Copy existing application directory contents
 COPY . .
 
-# Establece permisos
-RUN chown -R www-data:www-data /var/www/html
+# Install composer dependencies
+RUN composer install
 
-# Exposición del puerto 80
-EXPOSE 80
+# Set proper permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage \
+    && chmod -R 775 /var/www/html/bootstrap/cache
+
+# Create necessary directories if they don't exist
+RUN mkdir -p /var/www/html/public
