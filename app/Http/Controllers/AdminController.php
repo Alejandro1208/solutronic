@@ -134,122 +134,93 @@ public function updateOrder(Request $request)
  */
 public function store(Request $request)
 {
-    try {
-        Log::info('Datos de la solicitud:', $request->all());
+try {
+    Log::info('Datos de la solicitud:', $request->all());
 
-        $request->validate([
-            'titulo' => 'required',
-            'descripcion' => 'required',
-            'imagenes.*' => 'nullable|image',
-            'video' => 'nullable|url',
-            'filter' => 'required|array'
-        ]);
+    $request->validate([
+        'titulo' => 'required',
+        'descripcion' => 'required',
+        'imagenes.*' => 'nullable|image',
+        'video' => 'nullable|url',
+        'filter' => 'required|array',
+    ]);
 
-        $producto = new Producto;
-        $producto->titulo = $request->titulo;
-        $producto->descripcion = $request->descripcion;
-        $producto->destacado = $request->has('destacado');
-        $producto->codigo = $request->codigo;
-        $producto->configuraciones = $request->configuraciones;
-        $producto->save();
+    $producto = new Producto;
+    $producto->titulo = $request->titulo;
+    $producto->descripcion = $request->descripcion;
+    $producto->destacado = $request->has('destacado');
+    $producto->codigo = $request->codigo;
+    $producto->configuraciones = $request->configuraciones;
+    $producto->save();
 
-        // Guardar los filtros
-        if ($request->has('filter')) {
-            foreach ($request->filter as $filter) {
-                if (!empty($filter)) {
-                    $parentFilter = $this->getParentFilter($filter);
-                    Log::info('Creando filtro:', ['filter' => $filter, 'parent' => $parentFilter]);
-                    $producto->filters()->create([
-                        'filter' => $filter,
-                        'parent_filter' => $parentFilter
-                    ]);
-                }
+    // Guardar los filtros
+    if ($request->has('filter')) {
+        foreach ($request->filter as $filter) {
+            if (!empty($filter)) {
+                $parentFilter = $this->getParentFilter($filter);
+                Log::info('Creando filtro:', ['filter' => $filter, 'parent' => $parentFilter]);
+                $producto->productFilters()->create([
+                    'filter' => $filter,
+                    'parent_filter' => $parentFilter,
+                ]);
             }
         }
-
-        if ($request->hasFile('imagenes')) {
-            $imagenes = $request->file('imagenes');
-
-            // Si $imagenes no es un array, conviértelo en un array con un solo elemento
-            if (!is_array($imagenes)) {
-                $imagenes = [$imagenes];
-            }
-
-            Log::info('Número de imágenes cargadas:', ['count' => count($imagenes)]);
-
-            foreach ($imagenes as $index => $imagen) {
-                $imageName = time() . '_' . $index . '.' . $imagen->getClientOriginalExtension();
-                $imagen->move(base_path('public_html/images'), $imageName);
-
-                $media = new Media;
-                $media->product_id = $producto->id;
-                $media->image_path = $imageName;
-                $media->save();
-
-                Log::info('Imagen guardada:', ['image_path' => $imageName]);
-            }
-        }
-
-        if ($request->video) {
-            parse_str(parse_url($request->video, PHP_URL_QUERY), $my_array_of_vars);
-            $videoId = $my_array_of_vars['v'];  // Aquí se obtiene el ID del video
-
-            $media = new Media;
-            $media->product_id = $producto->id;
-            $media->video_link = $videoId;  // Aquí se guarda el ID del video en lugar de la URL completa
-            $media->save();
-        }
-
-        return redirect()->route('admin');
-    } catch (\Exception $e) {
-        Log::error('Error al guardar el producto:', ['error' => $e->getMessage()]);
-        return redirect()->route('admin')->with('error', 'Hubo un error al agregar el producto.');
     }
+
+    // Crear un nuevo modelo Media
+    $media = new Media;
+    $media->product_id = $producto->id;
+
+    // Guardar las imágenes
+    if ($request->hasFile('imagenes')) {
+        $imagenes = $request->file('imagenes');
+
+        // Si $imagenes no es un array, conviértelo en un array con un solo elemento
+        if (!is_array($imagenes)) {
+            $imagenes = [$imagenes];
+        }
+
+        Log::info('Número de imágenes cargadas:', ['count' => count($imagenes)]);
+
+        foreach ($imagenes as $index => $imagen) {
+            $imageName = time() . '_' . $index . '.' . $imagen->getClientOriginalExtension();
+            $filePath = base_path('public_html/images/' . $imageName);  // Usar base_path()
+            Log::info('Ruta del archivo de imagen: ' . $filePath);
+
+            // Mover la imagen al directorio correcto
+            $imagen->move(base_path('public_html/images'), $imageName);
+
+            $media->image_path = $imageName;  // Guarda solo el nombre del archivo
+
+            Log::info('Imagen guardada:', ['image_path' => $imageName]);
+        }
+    }
+
+    // Guardar el video
+    if ($request->video) {
+        Log::info('URL del video: ' . $request->video);
+        // Parsea la URL del video para extraer el ID
+        parse_str(parse_url($request->video, PHP_URL_QUERY), $my_array_of_vars);
+        $videoId = $my_array_of_vars['v'] ?? null;  // Obtén el ID del video
+        Log::info('ID del video: ' . $videoId);
+
+        $media->video_link = $videoId;  // Guarda el ID del video
+        Log::info('Video guardado:', ['video_link' => $videoId]);
+    }
+
+    $media->save();
+    Log::info('Media guardado:', ['media' => $media]);
+
+    return redirect()->route('admin.index'); // Redirige a /admin
+} catch (\Exception $e) {
+    Log::error('Error al guardar el producto:', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+
+    return redirect()->route('admin.index')->with('error', 'Hubo un error al agregar el producto.');
+}
 }
 
 /**
  * Show the form for editing the specified resource.
- */
-public function edit($id)
-{
-\Log::info('Iniciando getProductData para producto ID: ' . $id);
-\Log::info('Ubicación del archivo AdminController.php:', [realpath(__FILE__)]);
-\Log::info('Contenido del archivo AdminController.php:', [file_get_contents(__FILE__)]);
-
-$producto = Producto::with('media', 'filters')->findOrFail($id);
-\Log::info('Relaciones cargadas. Filters:', ['filters_raw' => $producto->filters->toArray()]);
-
-// Obtener el video si existe
-$video = $producto->media->where('video_link', '!=', null)->first();
-$video_link = $video ? $video->video_link : null;
-
-// Obtener las imágenes
-$imagenes = $producto->media->where('image_path', '!=', null)->pluck('image_path')->all();
-$image_ids = $producto->media->where('image_path', '!=', null)->pluck('id')->all();
-
-// Obtener los filtros únicos
-$filters = $producto->filters->pluck('filter')->unique()->values()->toArray();
-\Log::info('Filtros procesados:', ['filters_final' => $filters]);
-
-$data = [
-    'id' => $producto->id,
-    'titulo' => $producto->titulo,
-    'descripcion' => $producto->descripcion,
-    'codigo' => $producto->codigo,
-    'video_link' => $video_link,
-    'media' => $producto->media,
-    'configuraciones' => $producto->configuraciones,
-    'filters' => $filters, // Usa los filtros únicos
-    'destacado' => $producto->destacado,
-    'imagenes' => $imagenes,
-    'image_ids' => $image_ids
-];
-
-\Log::info('Datos a enviar al frontend:', $data);
-return response()->json($data);
-}
-/**
- * Update the specified resource in storage.
  */
 public function update(Request $request, $id)
 {
@@ -282,15 +253,17 @@ public function update(Request $request, $id)
             $producto->configuraciones = null;
         }
 
-        $producto->filter = $request->filter;
         $producto->save();
+
+        // Eliminar los filtros existentes
+        $producto->productFilters()->delete();
 
         if ($request->has('filter') && is_array($request->filter)) {
             foreach ($request->filter as $filter) {
                 if (!empty($filter)) {
                     $parentFilter = $this->getParentFilter($filter);
                     Log::info('Creando filtro:', ['filter' => $filter, 'parent' => $parentFilter]);
-                    $producto->filters()->create([
+                    $producto->productFilters()->create([
                         'filter' => $filter,
                         'parent_filter' => $parentFilter
                     ]);
@@ -298,15 +271,10 @@ public function update(Request $request, $id)
             }
         }
 
-        // Obtén los IDs de las imágenes existentes desde el modelo $producto
-        $existing_image_ids = $producto->media()->whereNotNull('image_path')->pluck('id')->toArray();
-        Log::info('IDs de imágenes existentes:', $existing_image_ids);
-
         // Guardar las nuevas imágenes
-        if ($request->hasFile('imagenes')) {
-            $imagenes = $request->file('imagenes');
-
-            foreach ($imagenes as $imagen) {
+        for ($i = 1; $i <= 4; $i++) {
+            if ($request->hasFile("imagenes.{$i}")) {
+                $imagen = $request->file("imagenes.{$i}");
                 $imageName = time() . '_' . $imagen->getClientOriginalName();
                 $imagen->move(base_path('public_html/images'), $imageName);
 
@@ -314,20 +282,6 @@ public function update(Request $request, $id)
                 $media->product_id = $producto->id;
                 $media->image_path = $imageName;
                 $media->save();
-            }
-        }
-
-        // Combinar los IDs de las imágenes existentes con los IDs de las nuevas imágenes
-        $new_image_ids = $producto->media()->whereNotNull('image_path')->pluck('id')->toArray();
-        $image_ids_to_keep = array_merge($existing_image_ids, $new_image_ids);
-
-        // Eliminar las imágenes que no están en la lista combinada de imágenes existentes y nuevas
-        foreach ($producto->media()->whereNotNull('image_path')->get() as $image) {
-            if (!in_array($image->id, $image_ids_to_keep)) {
-                if (file_exists(public_path('images/' . $image->image_path))) {
-                    unlink(public_path('images/' . $image->image_path));
-                }
-                $image->delete();
             }
         }
 
@@ -361,23 +315,32 @@ public function update(Request $request, $id)
         ], 500);
     }
 }
-/**
- * Remove the specified resource from storage.
- */
+
+
 public function destroy(Producto $producto)
 {
-    // Eliminar medios asociados
-    foreach ($producto->media as $media) {
-        if ($media->image_path) {
-            unlink(public_path('images/' . $media->image_path));
+// Eliminar medios asociados
+foreach ($producto->media as $media) {
+    if ($media->image_path) {
+        $filePath = base_path('public_html/images/' . $media->image_path); // Ruta correcta
+        if (file_exists($filePath)) {
+            try {
+                unlink($filePath);
+            } catch (\Exception $e) {
+                Log::error('Error al eliminar la imagen: ' . $e->getMessage());
+                // Puedes optar por continuar incluso si no se puede eliminar la imagen
+            }
+        } else {
+            Log::warning('El archivo no existe: ' . $filePath);
         }
-        $media->delete();
     }
+    $media->delete();
+}
 
-    // Eliminar el producto de la base de datos
-    $producto->delete();
+// Eliminar el producto de la base de datos
+$producto->delete();
 
-    return redirect()->route('admin');
+return redirect()->route('admin.productos.index');
 }
 
 public function filtrarProductos(Request $request)
@@ -442,16 +405,23 @@ public function filtrarProductos(Request $request)
     }
 }
 
-// En ProductoController.php
 public function deleteImage($id)
 {
-    $media = Media::findOrFail($id);
-    if ($media->image_path && file_exists(base_path('public_html/images/' . $media->image_path))) {
-        unlink(base_path('public_html/images/' . $media->image_path));
-    }
-    $media->delete();
+    try {
+        $media = Media::findOrFail($id);
 
-    return response()->json(['status' => 'success']);
+        // Eliminar la imagen del sistema de archivos
+        if ($media->image_path && file_exists(base_path('public_html/images/' . $media->image_path))) {
+            unlink(base_path('public_html/images/' . $media->image_path));
+        }
+
+        $media->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Imagen eliminada correctamente']);
+    } catch (\Exception $e) {
+        Log::error('Error al eliminar la imagen: ' . $e->getMessage());
+        return response()->json(['status' => 'error', 'message' => 'Error al eliminar la imagen'], 500);
+    }
 }
 
 public function reorder(Request $request)

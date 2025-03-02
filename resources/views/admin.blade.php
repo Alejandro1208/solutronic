@@ -53,12 +53,10 @@
                                 @if ($producto->media->count() > 1)
                                     <button class="carousel-control-prev" type="button"
                                         data-bs-target="#carousel{{ $producto->id }}" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next" type="button"
                                         data-bs-target="#carousel{{ $producto->id }}" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 @endif
@@ -136,34 +134,30 @@
                             <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
                         </div>
                         <div class="mb-3">
-                            <div class="mb-3">
-                                <label for="imagen1" class="form-label">Imagen 1:</label>
-                                <input type="file" class="form-control" id="imagen1" name="imagenes[]">
-                                <img id="editpreview1" src="#" alt="Agregar Imagen" style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
-                                <input type="hidden" name="existing_image_ids[]">
-                                <button class="btn btn-danger delete-image" data-id="">Eliminar</button>
-                            </div>
-                            <div class="mb-3">
-                                <label for="imagen2" class="form-label">Imagen 2:</label>
-                                <input type="file" class="form-control" id="imagen2" name="imagenes[]">
-                                <img id="editpreview2" src="#" alt="Agregar Imagen"  style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
-                                <input type="hidden" name="existing_image_ids[]">
-                                <button class="btn btn-danger delete-image" data-id="">Eliminar</button>
-                            </div>
-                            <div class="mb-3">
-                                <label for="imagen3" class="form-label">Imagen 3:</label>
-                                <input type="file" class="form-control" id="imagen3" name="imagenes[]">
-                                <img id="editpreview3" src="#" alt="Agregar Imagen" style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
-                                <input type="hidden" name="existing_image_ids[]">
-                                <button class="btn btn-danger delete-image" data-id="">Eliminar</button>
-                            </div>
-                            <div class="mb-3">
-                                <label for="imagen4" class="form-label">Imagen 4:</label>
-                                <input type="file" class="form-control" id="imagen4" name="imagenes[]">
-                                <img id="editpreview4" src="#" alt="Agregar Imagen" style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
-                                <input type="hidden" name="existing_image_ids[]">
-                                <button class="btn btn-danger delete-image" data-id="">Eliminar</button>
-                            </div>
+<div class="mb-3">
+    <label for="imagen1" class="form-label">Imagen 1:</label>
+    <input type="file" class="form-control" id="imagen1" name="imagenes[]">
+    <img id="editpreview1" src="{{ isset($producto->media[0]) ? asset('images/' . $producto->media[0]->image_path) : '#' }}" alt="Agregar Imagen" style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
+    <button class="btn btn-danger delete-image" data-id="{{ isset($producto->media[0]) ? $producto->media[0]->id : '' }}">Eliminar</button>
+</div>
+<div class="mb-3">
+    <label for="imagen2" class="form-label">Imagen 2:</label>
+    <input type="file" class="form-control" id="imagen2" name="imagenes[]">
+    <img id="editpreview2" src="{{ isset($producto->media[1]) ? asset('images/' . $producto->media[1]->image_path) : '#' }}" alt="Agregar Imagen"  style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
+    <button class="btn btn-danger delete-image" data-id="{{ isset($producto->media[1]) ? $producto->media[1]->id : '' }}">Eliminar</button>
+</div>
+<div class="mb-3">
+    <label for="imagen3" class="form-label">Imagen 3:</label>
+    <input type="file" class="form-control" id="imagen3" name="imagenes[]">
+    <img id="editpreview3" src="{{ isset($producto->media[2]) ? asset('images/' . $producto->media[2]->image_path) : '#' }}" alt="Agregar Imagen" style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
+    <button class="btn btn-danger delete-image" data-id="{{ isset($producto->media[2]) ? $producto->media[2]->id : '' }}">Eliminar</button>
+</div>
+<div class="mb-3">
+    <label for="imagen4" class="form-label">Imagen 4:</label>
+    <input type="file" class="form-control" id="imagen4" name="imagenes[]">
+    <img id="editpreview4" src="{{ isset($producto->media[3]) ? asset('images/' . $producto->media[3]->image_path) : '#' }}" alt="Agregar Imagen" style="max-width: 200px; max-height: 200px; object-fit: contain;"/>
+    <button class="btn btn-danger delete-image" data-id="{{ isset($producto->media[3]) ? $producto->media[3]->id : '' }}">Eliminar</button>
+</div>
                             <!-- Aquí irán los demás campos de entrada -->
                             <div class="mb-3">
                                 <label for="video" class="form-label">Video:</label>
@@ -173,29 +167,10 @@
                                 <label for="codigo" class="form-label">Código:</label>
                                 <input type="text" class="form-control" id="codigo" name="codigo">
                             </div>
-                            <!-- Reemplazar el div de configuraciones existente con esto -->
-                            <div class="mb-3">
-                                <label for="configuraciones" class="form-label">Configuraciones:</label>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="addConfigTable">
-                                        <thead>
-                                            <tr>
-                                                <th>Configuración</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Las filas se agregarán dinámicamente -->
-                                        </tbody>
-                                    </table>
-                                    <button type="button" class="btn btn-success" id="addNewConfigRow">
-                                        <i class="fas fa-plus"></i> Agregar Configuración
-                                    </button>
-                                </div>
-                                <input type="hidden" name="configuraciones" id="addConfiguracionesJSON">
-                            </div>
-                            <!-- En el modal de edición -->
-                            <!-- Reemplazar el select actual con esto -->
+<div class="mb-3">
+    <label for="configuraciones" class="form-label">Configuraciones:</label>
+    <textarea class="form-control" id="configuraciones" name="configuraciones"></textarea>
+</div>
                             <div class="mb-3">
                                 <label for="edit_filter" class="form-label">Filtros:</label>
                                 <select name="filter[]" id="edit_filter" class="form-control select2-multiple"
@@ -281,22 +256,18 @@
                     <div class="mb-3">
                         <label for="imagen1" class="form-label">Imagen 1:</label>
                         <input type="file" class="form-control" id="imagen1" name="imagenes[]">
-                        <img id="preview1" src="#" alt="Agregar Imagen" />
                     </div>
                     <div class="mb-3">
                         <label for="imagen2" class="form-label">Imagen 2:</label>
                         <input type="file" class="form-control" id="imagen2" name="imagenes[]">
-                        <img id="preview2" src="#" alt="Agregar Imagen" />
                     </div>
                     <div class="mb-3">
                         <label for="imagen3" class="form-label">Imagen 3:</label>
                         <input type="file" class="form-control" id="imagen3" name="imagenes[]">
-                        <img id="preview3" src="#" alt="Agregar Imagen" />
                     </div>
                     <div class="mb-3">
                         <label for="imagen4" class="form-label">Imagen 4:</label>
                         <input type="file" class="form-control" id="imagen4" name="imagenes[]">
-                        <img id="preview4" src="#" alt="your image" />
                     </div>
                     <div class="mb-3">
                         <label for="video" class="form-label">Video:</label>
@@ -333,26 +304,10 @@
                         <input type="text" class="form-control" id="codigo" name="codigo"
                             value="{{ old('codigo') }}">
                     </div>
-                    <div class="mb-3">
-                        <label for="configuraciones" class="form-label">Configuraciones:</label>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="addConfigTable">
-                                <thead>
-                                    <tr>
-                                        <th>Configuración</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Las filas se agregarán dinámicamente -->
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-success" id="addNewConfigRow">
-                                <i class="fas fa-plus"></i> Agregar Configuración
-                            </button>
-                        </div>
-                        <input type="hidden" name="configuraciones" id="addConfiguracionesJSON">
-                    </div>
+<div class="mb-3">
+    <label for="configuraciones" class="form-label">Configuraciones:</label>
+    <textarea class="form-control" id="configuraciones" name="configuraciones"></textarea>
+</div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="destacado" id="destacado">
                         <label class="form-check-label" for="destacado">
@@ -371,34 +326,52 @@
 <!-- Fin Modal Agregar Producto -->
 
 <head>
-    <!-- jQuery primero -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- jQuery primero -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Luego Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Luego Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <!-- Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Sortable JS -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
 
-    <!-- Sortable JS -->
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+<!-- Summernote CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
 
-    @yield('styles')
+@yield('styles')
 </head>
+@section('scripts')
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Summernote JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 <script>
     $(document).ready(function() {
         // Agregar esto justo después de "Script cargado"
         console.log("Script cargado");
+
+        // Inicializar Summernote
+        $('#configuraciones').summernote({
+            height: 200, // Altura del editor
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+            ]
+        });
 
         // Buscador en vivo
         $('#searchInput').on('input', function() {
@@ -406,7 +379,6 @@
 
             if (searchTerm === '') {
                 window.location.reload();
-                return;
             }
 
             $.ajax({
@@ -514,99 +486,102 @@
             });
         });
 
-// --- Modal Editar Producto ---
-$(document).on('click', '.edit-button', function(e) {
-e.preventDefault();
-var productId = $(this).data('id');
+        // --- Modal Editar Producto ---
+        $(document).on('click', '.edit-button', function(e) {
+            e.preventDefault();
+            var productId = $(this).data('id');
 
-$.ajax({
-    url: `/admin/getProductData/${productId}`,
-    method: 'GET',
-    success: function(response) {
-        $('#editForm').attr('action', `/admin/productos/${productId}`);
-        $('#product-id').val(response.id);
-        $('#editModal #titulo').val(response.titulo);
-        $('#editModal #descripcion').val(response.descripcion);
-        $('#editModal #codigo').val(response.codigo);
-        $('#editModal #video').val(response.video_link);
+            $.ajax({
+                url: `/admin/getProductData/${productId}`,
+                method: 'GET',
+                success: function(response) {
+                    $('#editForm').attr('action', `/admin/productos/${productId}`);
+                    $('#product-id').val(response.id);
+                    $('#editModal #titulo').val(response.titulo);
+                    $('#editModal #descripcion').val(response.descripcion);
+                    $('#editModal #codigo').val(response.codigo);
+                    $('#editModal #video').val(response.video_link);
 
-        // Manejar imágenes
-        $('#editModal [id^=editpreview]').attr('src', '#').hide();
-        $('#editModal input[name="existing_image_ids[]"]').val('');
+                    // Manejar imágenes
+                    $('#editModal [id^=editpreview]').attr('src', '#').hide();
+                    $('#editModal input[name="existing_image_ids[]"]').val('');
 
-        if (response.media && response.media.length > 0) {
-            response.media.forEach((media, index) => {
-                if (media.image_path) {
-                    const previewId = `#editpreview${index + 1}`; // Corregido el ID
-                    const imageIdInput = $(previewId).siblings('input[name="existing_image_ids[]"]');
+                    if (response.media && response.media.length > 0) {
+                        response.media.forEach((media, index) => {
+                            if (media.image_path) {
+                                const previewId = `#editpreview${index + 1}`; // Corregido el ID
+                                const imageIdInput = $(previewId).siblings('input[name="existing_image_ids[]"]');
 
-                    // Construir la URL de la imagen DIRECTAMENTE
-                    const imageUrl = `/images/${media.image_path}`;
+                                // Construir la URL de la imagen DIRECTAMENTE
+                                const imageUrl = `/images/${media.image_path}`;
 
-                    $(previewId)
-                        .attr('src', imageUrl)
-                        .show();
-                    imageIdInput.val(media.id);
+                                $(previewId)
+                                    .attr('src', imageUrl)
+                                    .show();
+                                imageIdInput.val(media.id);
+                            }
+                        });
+                    }
+
+                    // Clear and update configurations
+                    $('#editModal #addConfigTable tbody').empty();
+                    if (response.configuraciones) {
+                        const configs = response.configuraciones.split('-').map(config =>
+                            config.trim()).filter(config => config);
+                        configs.forEach(config => {
+                            addConfigRow(config);
+                        });
+                    }
+                    // Add at least one empty row if no configurations exist
+                    if ($('#editModal #addConfigTable tbody tr').length === 0) {
+                        addConfigRow();
+                    }
+                    updateConfiguraciones();
+
+                    // **CORRECCIÓN: Seleccionar los filtros en el select2**
+                    let filters = [];
+
+                    if (response.filters && Array.isArray(response.filters)) {
+                        filters = response.filters;
+                        $('#edit_filter').val(response.filters).trigger('change');
+                    } else if (response.filter) {
+                        // Si es un solo filtro, convertirlo en array
+                        filters = Array.isArray(response.filter) ? response.filter : [
+                            response
+                            .filter
+                        ];
+                        $('#edit_filter').val(filters).trigger('change');
+                    } else {
+                        $('#edit_filter').val(null).trigger('change');
+                    }
+                    console.log("Filtros:", filters);
+
+                    // Manejar destacado
+                    $('#editModal #destacado').val(response.destacado ? '1' : '0');
+
+                    // Manejar configuraciones
+                    $('#addConfigTable tbody').empty();
+                    if (response.configuraciones) {
+                        let configs = response.configuraciones.split('-').map(item => item
+                            .trim()).filter(item => item);
+                        configs.forEach(config => addConfigRow(config));
+                    }
+                    if ($('#addConfigTable tbody tr').length === 0) {
+                        addConfigRow();
+                    }
+
+                    // Inicializar Summernote con el valor actual
+                    $('#configuraciones').summernote('code', response.configuraciones);
+
+                    $('#editModal').modal('show');
+                },
+                error: function(xhr) {
+                    console.error('Error al obtener los datos del producto:', xhr
+                        .responseText);
+                    alert('Error al cargar los datos del producto.');
                 }
             });
-        }
-
-        // Clear and update configurations
-        $('#editModal #addConfigTable tbody').empty();
-        if (response.configuraciones) {
-            const configs = response.configuraciones.split('-').map(config =>
-                config.trim()).filter(config => config);
-            configs.forEach(config => {
-                addConfigRow(config);
-            });
-        }
-        // Add at least one empty row if no configurations exist
-        if ($('#editModal #addConfigTable tbody tr').length === 0) {
-            addConfigRow();
-        }
-        updateConfiguraciones();
-
-        // **CORRECCIÓN: Seleccionar los filtros en el select2**
-        let filters = [];
-
-        if (response.filters && Array.isArray(response.filters)) {
-            filters = response.filters;
-            $('#edit_filter').val(response.filters).trigger('change');
-        } else if (response.filter) {
-            // Si es un solo filtro, convertirlo en array
-            filters = Array.isArray(response.filter) ? response.filter : [
-                response
-                .filter
-            ];
-            $('#edit_filter').val(filters).trigger('change');
-        } else {
-            $('#edit_filter').val(null).trigger('change');
-        }
-        console.log("Filtros:", filters);
-
-        // Manejar destacado
-        $('#editModal #destacado').val(response.destacado ? '1' : '0');
-
-        // Manejar configuraciones
-        $('#addConfigTable tbody').empty();
-        if (response.configuraciones) {
-            let configs = response.configuraciones.split('-').map(item => item
-                .trim()).filter(item => item);
-            configs.forEach(config => addConfigRow(config));
-        }
-        if ($('#addConfigTable tbody tr').length === 0) {
-            addConfigRow();
-        }
-
-        $('#editModal').modal('show');
-    },
-    error: function(xhr) {
-        console.error('Error al obtener los datos del producto:', xhr
-            .responseText);
-        alert('Error al cargar los datos del producto.');
-    }
-});
-});
+        });
 
         // --- Cerrar Modales ---
         $('.modal .btn-close, .modal .btn-secondary').on('click', function() {
@@ -783,7 +758,7 @@ $.ajax({
 
         // ==================== EVENTOS ====================
 
-        $(document).on('click', '.delete-config', function() {
+        $(document).on('click', '.delete-image', function(e) {
             const tbody = $(this).closest('tbody');
             if (tbody.find('tr').length > 1) {
                 $(this).closest('tr').remove();
@@ -797,123 +772,165 @@ $.ajax({
 
         // Manejar el envío del formulario de edición
         $('#editForm').on('submit', function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            var productId = $('#product-id').val();
+    e.preventDefault();
+    var formData = new FormData(this);
+    var productId = $('#product-id').val();
 
-            $.ajax({
-                url: `/admin/productos/${productId}`,
-                method: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    $('#editModal').modal('hide');
-                    if (response.success) {
-                        window.location.reload();
-                    }
-                },
-                error: function(xhr) {
-                    console.error('Error al actualizar el producto:', xhr.responseText);
-                    alert('Error al actualizar el producto.');
-                }
-            });
-        });
+    // Agregar las configuraciones al FormData
+    var configuraciones = [];
+    $('#editModal .config-input').each(function() {
+        const valor = $(this).val().trim();
+        if (valor) {
+            configuraciones.push(valor);
+        }
     });
+    formData.set('configuraciones', configuraciones.join(' - '));
+
+    formData.set('video', $('#editModal #video').val());
+
+    // Agregar las imágenes al FormData
+    for (let i = 1; i <= 4; i++) {
+        const imagenInput = $(`#imagen${i}`)[0];
+        if (imagenInput.files.length > 0) {
+            formData.append(`imagenes[${i}]`, imagenInput.files[0]);
+        }
+    }
+
+    $.ajax({
+        url: `/admin/productos/${productId}`,
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            $('#editModal').modal('hide');
+            if (response.success) {
+                window.location.reload();
+            }
+        },
+        error: function(xhr) {
+            console.error('Error al actualizar el producto:', xhr.responseText);
+            alert('Error al actualizar el producto.');
+        }
+    });
+});
+    });
+
+$('#editModal').on('shown.bs.modal', function() {
+console.log('Modal de edición abierto');
+console.log('Intentando inicializar Summernote...');
+try {
+    $('#configuraciones').summernote({
+        height: 200, // Altura del editor
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+        ]
+    });
+    console.log('Summernote inicializado correctamente');
+} catch (error) {
+    console.error('Error al inicializar Summernote:', error);
+}
+});
 </script>
 <style>
-    .modal.show {
-        display: block !important;
-        /* Agregar !important */
-    }
+.modal.show {
+    display: block !important;
+    /* Agregar !important */
+}
 
-    .modal-backdrop.show {
-        opacity: 0.5 !important;
-        /* Agregar !important */
-    }
+.modal-backdrop.show {
+    opacity: 0.5 !important;
+    /* Agregar !important */
+}
 
-    .select2-dropdown {
-        z-index: 99999 !important;
-    }
+.select2-dropdown {
+    z-index: 99999 !important;
+}
 
-    /* Ajustes para modales */
-    .modal-body {
-        position: relative !important;
-    }
+/* Ajustes para modales */
+.modal-body {
+    position: relative !important;
+}
 
-    .modal-backdrop {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
-    /* Estilos para la lista ordenable */
-    #searchInput {
-        padding: 10px 15px;
-        border-radius: 20px;
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
+/* Estilos para la lista ordenable */
+#searchInput {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
 
-    #searchInput:focus {
-        outline: none;
-        border-color: #80bdff;
-        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-    }
+#searchInput:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
 
-    #sortableList {
-        list-style: none;
-        padding: 20px;
-        background: #f8f9fa;
-        border-radius: 4px;
-        margin-top: 20px;
-    }
+#sortableList {
+    list-style: none;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    margin-top: 20px;
+}
 
-    #sortableList li {
-        background: white;
-        padding: 15px;
-        margin-bottom: 10px;
-        border: 1px solid #dee2e6;
-        border-radius: 4px;
-        cursor: move;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+#sortableList li {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: move;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    #sortableList li:hover {
-        background: #e9ecef;
-    }
+#sortableList li:hover {
+    background: #e9ecef;
+}
 
-    .sortable-ghost {
-        opacity: 0.5;
-        background: #c8e6c9 !important;
-    }
+.sortable-ghost {
+    opacity: 0.5;
+    background: #c8e6c9 !important;
+}
 
-    .carousel-control-prev,
-    .carousel-control-next {
-        background-color: rgba(0, 0, 0, 0.3);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0 10px;
-    }
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 10px;
+}
 
-    .carousel-item {
-        background-color: #fff;
-    }
+.carousel-item {
+    background-color: #fff;
+}
 
-    .card-img-container {
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.card-img-container {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        width: 20px;
-        height: 20px;
-    }
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+}
 </style>
+@endsection

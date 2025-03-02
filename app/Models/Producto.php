@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +12,7 @@ class Producto extends Model implements Sortable
 
     protected $fillable = [
         'titulo', 'descripcion', 'imagen', 'destacado',
-        'filter', 'order', 'codigo', 'configuraciones',
+        'order', 'codigo', 'configuraciones',
         'imagen2', 'imagen3', 'imagen4', 'video'
     ];
 
@@ -22,14 +21,14 @@ class Producto extends Model implements Sortable
         'sort_when_creating' => true
     ];
 
-    protected $casts = [
-        'filter' => 'array'
-    ];
+    // protected $casts = [
+    //     'filter' => 'array' // Eliminar esta línea
+    // ];
 
-public function productFilters()
-{
-    return $this->hasMany(ProductFilter::class);
-}
+    public function productFilters()
+    {
+        return $this->hasMany(ProductFilter::class, 'product_id');
+    }
 
     public function media()
     {
